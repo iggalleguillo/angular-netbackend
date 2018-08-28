@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CarrerasBDModel1StoreContainer" CdmEntityContainer="CarrerasBDEntities">
+    <EntitySetMapping Name="Caballos">
+      <EntityTypeMapping TypeName="CarrerasBDModel1.Caballos">
+        <MappingFragment StoreEntitySet="Caballos">
+          <ScalarProperty Name="IdCaballo" ColumnName="IdCaballo" />
+          <ScalarProperty Name="ProbApuestaInicial" ColumnName="ProbApuestaInicial" />
+          <ScalarProperty Name="ProbApuestaFinal" ColumnName="ProbApuestaFinal" />
+          <ScalarProperty Name="ProbGanadorInicial" ColumnName="ProbGanadorInicial" />
+          <ScalarProperty Name="ProbGanadorFinal" ColumnName="ProbGanadorFinal" />
+          <ScalarProperty Name="NombreCaballo" ColumnName="NombreCaballo" />
+          <ScalarProperty Name="Bonificador" ColumnName="Bonificador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarreraJugador">
+      <EntityTypeMapping TypeName="CarrerasBDModel1.CarreraJugador">
+        <MappingFragment StoreEntitySet="CarreraJugador">
+          <ScalarProperty Name="CantidadApostada" ColumnName="CantidadApostada" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Jugador" ColumnName="Jugador" />
+          <ScalarProperty Name="Carrera" ColumnName="Carrera" />
+          <ScalarProperty Name="CaballoApostado" ColumnName="CaballoApostado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carreras">
+      <EntityTypeMapping TypeName="CarrerasBDModel1.Carreras">
+        <MappingFragment StoreEntitySet="Carreras">
+          <ScalarProperty Name="IdCarrera" ColumnName="IdCarrera" />
+          <ScalarProperty Name="NombreCarrera" ColumnName="NombreCarrera" />
+          <ScalarProperty Name="CaballoGanador" ColumnName="CaballoGanador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jugadores">
+      <EntityTypeMapping TypeName="CarrerasBDModel1.Jugadores">
+        <MappingFragment StoreEntitySet="Jugadores">
+          <ScalarProperty Name="IdJugador" ColumnName="IdJugador" />
+          <ScalarProperty Name="NombreJugador" ColumnName="NombreJugador" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

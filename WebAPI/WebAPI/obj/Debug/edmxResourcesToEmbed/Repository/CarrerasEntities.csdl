@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarrerasBDModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Caballos">
+    <Key>
+      <PropertyRef Name="IdCaballo" />
+    </Key>
+    <Property Name="IdCaballo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProbApuestaInicial" Type="Int32" Nullable="false" />
+    <Property Name="ProbApuestaFinal" Type="Int32" Nullable="false" />
+    <Property Name="ProbGanadorInicial" Type="Int32" Nullable="false" />
+    <Property Name="ProbGanadorFinal" Type="Int32" Nullable="false" />
+    <Property Name="NombreCaballo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Bonificador" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CarreraJugador" Relationship="Self.FK_CarreraJugador_Caballo" FromRole="Caballos" ToRole="CarreraJugador" />
+  </EntityType>
+  <EntityType Name="CarreraJugador">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Jugador" Type="Int32" Nullable="false" />
+    <Property Name="Carrera" Type="Int32" Nullable="false" />
+    <Property Name="CaballoApostado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Caballos" Relationship="Self.FK_CarreraJugador_Caballo" FromRole="CarreraJugador" ToRole="Caballos" />
+    <NavigationProperty Name="Carreras" Relationship="Self.FK_CarreraJugador_Carrera" FromRole="CarreraJugador" ToRole="Carreras" />
+    <NavigationProperty Name="Jugadores" Relationship="Self.FK_CarreraJugador_Jugadores" FromRole="CarreraJugador" ToRole="Jugadores" />
+    <Property Name="CantidadApostada" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+  </EntityType>
+  <EntityType Name="Carreras">
+    <Key>
+      <PropertyRef Name="IdCarrera" />
+    </Key>
+    <Property Name="IdCarrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCarrera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CaballoGanador" Type="Int32" />
+    <NavigationProperty Name="CarreraJugador" Relationship="Self.FK_CarreraJugador_Carrera" FromRole="Carreras" ToRole="CarreraJugador" />
+  </EntityType>
+  <EntityType Name="Jugadores">
+    <Key>
+      <PropertyRef Name="IdJugador" />
+    </Key>
+    <Property Name="IdJugador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreJugador" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Saldo" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+    <NavigationProperty Name="CarreraJugador" Relationship="Self.FK_CarreraJugador_Jugadores" FromRole="Jugadores" ToRole="CarreraJugador" />
+  </EntityType>
+  <Association Name="FK_CarreraJugador_Caballo">
+    <End Role="Caballos" Type="Self.Caballos" Multiplicity="1" />
+    <End Role="CarreraJugador" Type="Self.CarreraJugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Caballos">
+        <PropertyRef Name="IdCaballo" />
+      </Principal>
+      <Dependent Role="CarreraJugador">
+        <PropertyRef Name="CaballoApostado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarreraJugador_Carrera">
+    <End Role="Carreras" Type="Self.Carreras" Multiplicity="1" />
+    <End Role="CarreraJugador" Type="Self.CarreraJugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carreras">
+        <PropertyRef Name="IdCarrera" />
+      </Principal>
+      <Dependent Role="CarreraJugador">
+        <PropertyRef Name="Carrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarreraJugador_Jugadores">
+    <End Role="Jugadores" Type="Self.Jugadores" Multiplicity="1" />
+    <End Role="CarreraJugador" Type="Self.CarreraJugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jugadores">
+        <PropertyRef Name="IdJugador" />
+      </Principal>
+      <Dependent Role="CarreraJugador">
+        <PropertyRef Name="Jugador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarrerasBDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Caballos" EntityType="Self.Caballos" />
+    <EntitySet Name="CarreraJugador" EntityType="Self.CarreraJugador" />
+    <EntitySet Name="Carreras" EntityType="Self.Carreras" />
+    <EntitySet Name="Jugadores" EntityType="Self.Jugadores" />
+    <AssociationSet Name="FK_CarreraJugador_Caballo" Association="Self.FK_CarreraJugador_Caballo">
+      <End Role="Caballos" EntitySet="Caballos" />
+      <End Role="CarreraJugador" EntitySet="CarreraJugador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarreraJugador_Carrera" Association="Self.FK_CarreraJugador_Carrera">
+      <End Role="Carreras" EntitySet="Carreras" />
+      <End Role="CarreraJugador" EntitySet="CarreraJugador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarreraJugador_Jugadores" Association="Self.FK_CarreraJugador_Jugadores">
+      <End Role="Jugadores" EntitySet="Jugadores" />
+      <End Role="CarreraJugador" EntitySet="CarreraJugador" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

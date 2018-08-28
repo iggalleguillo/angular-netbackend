@@ -1,0 +1,36 @@
+<button routerLink="/carrera">Comenzar Nueva Carrera -></button>
+<br>
+<br>
+<table *ngFor='let carrera of carreras' style="border: 1px solid black">
+  <thead>
+    <th>IdCarrera</th>
+    <th>Nombre Carrera</th>
+    <th>Caballo Ganador</th>
+</thead>
+<tbody>
+  <tr>
+    <td>{{carrera.IdCarrera}}</td>
+    <td>{{carrera.NombreCarrera}}</td>
+    <td>{{carrera.CaballoGanador.NombreCaballo}}</td>
+  </tr>
+  <tr *ngFor='let participante of carrera.Participantes'>
+    <h2>Participantes</h2>
+    <td colspan="3">
+      <table style="border: 1px solid black">
+        <thead>
+          <th>Nombre Jugador</th>
+          <th>Saldo</th>
+          <th>Caballo Apostado</th>
+          <th>Cantidad Apostado</th>
+      </thead>
+      <tbody>
+        <td>{{participante.Nombre}}</td>
+        <td>{{participante.Saldo}}</td>
+        <td>Caballo {{participante.CaballoApostado}}</td>
+        <td>{{participante.CantidadApostada}}</td>
+      </tbody>
+      </table>
+    </td>
+  </tr>
+</tbody>
+</table>

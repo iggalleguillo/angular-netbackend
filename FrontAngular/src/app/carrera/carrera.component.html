@@ -1,0 +1,77 @@
+<div *ngIf="show">
+<app-jugadores></app-jugadores>
+</div>
+<br>
+<button *ngIf="show" (click)="comenzarCarrera()">Comenzar Carrera!</button>
+<button *ngIf="!show" routerLink="/carreras" (click)="volver()"><- Volver a Historial Carreras</button>
+<div *ngIf="rt">Proxima carrera en : {{rt}} segundos</div>
+<br>
+<br>
+<table *ngIf="!show">
+  <thead>
+    <th>Id Carrera</th>
+    <th>Nombre Carrera</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{carrera.IdCarrera}}</td>
+      <td>{{carrera.NombreCarrera}}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+          <h4>Participantes</h4>
+      <table *ngFor='let participante of carrera.Participantes'>
+        <thead>
+          <th>Nombre Jugador</th>
+          <th>Saldo</th>
+          <th>Caballo Apostado</th>
+          <th>Cantidad Apostada</th>
+        </thead>
+        <tbody>
+            <td>{{participante.Nombre}}</td>
+            <td>{{participante.Saldo}}</td>
+            <td>{{participante.CaballoApostado}}</td>
+            <td>{{participante.CantidadApostada}}</td>
+        </tbody>
+    </table>
+    </td>
+    </tr>
+    <tr>
+      <td>
+          <h4>Caballo Ganador</h4>
+        <table>
+          <thead>
+            <th>Nombre Caballo</th>
+            <th>Bonificador</th>
+          </thead>
+          <tbody>
+              <td>{{carrera.CaballoGanador.NombreCaballo}}</td>
+              <td>{{carrera.CaballoGanador.Bonificador}}</td>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+          <h4>Ganadores</h4>
+      <table *ngFor='let ganador of carrera.Ganadores'>
+          <thead>
+              <th>Nombre Jugador</th>
+              <th>Saldo</th>
+              <th>Caballo Apostado</th>
+              <th>Cantidad Apostada</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ganador.Nombre}}</td>
+                <td>{{ganador.Saldo}}</td>
+                <td>{{ganador.CaballoApostado}}</td>
+                <td>{{ganador.CantidadApostada}}</td>
+              </tr>
+            </tbody>
+      </table>
+    </td>
+    </tr>
+  </tbody>
+</table>
+<br>

@@ -1,0 +1,11 @@
+
+<h1>Ingresa Jugadores</h1>
+
+Nombre Jugador: <input type="text" [(ngModel)]="Nombre">
+<button (click)="agregarJugador(Nombre)">Agregar Jugador</button>
+<br>
+<ul>
+  <li *ngFor='let jugador of jugadores'>
+    {{jugador.Nombre}}
+  </li>
+</ul>
